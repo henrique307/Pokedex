@@ -1,24 +1,163 @@
-.pokelist{
-    padding: 0;
-    margin: 0 auto;
-    width: 90%;
-    display: grid;
-    grid-template-rows: repeat(auto, 500px);
-    grid-template-columns: repeat(3, 33%);
-    gap: 10px;
+.pokelist {
+  padding: 0;
+  margin: 0 auto;
+  width: 90%;
+  display: grid;
+  grid-template-rows: repeat(auto, 500px);
+  grid-template-columns: repeat(2, 50%);
+  gap: 10px;
 }
-.pokecard{
-    border: solid 1px black;
-    text-align: center;
-    list-style: none;
-    background-color: antiquewhite;
-    width: 100%;
-    height: 200px;
+.pokecard {
+  text-align: center;
+  list-style: none;
+  background-color: black;
+  width: 100%;
+  height: 200px;
 }
-.ward{
-    margin: 20px 0 20px 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
+.ward {
+  margin: 20px 0 20px 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.normal{
+    background-image: url('../assets/types-background/normal.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.ghost{
+    background-image: url('../assets/types-background/ghost.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.fighting{
+    background-image: url('../assets/types-background/fighting.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.grass {
+    background-image: url('../assets/types-background/grass.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.fire {
+    background-image: url('../assets/types-background/fire.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bug{
+    background-image: url('../assets/types-background/bug.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.electric{
+    background-image: url('../assets/types-background/eletric.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dark{
+    background-image: url('../assets/types-background/dark.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dragon{
+    background-image: url('../assets/types-background/dragon.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.poison{
+    background-image: url('../assets/types-background/poison.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.water{
+    background-image: url('../assets/types-background/water.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.ice{
+    background-image: url('../assets/types-background/ice.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.unknowm{
+    background-image: url('../assets/types-background/unknown.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.ground{
+    background-image: url('../assets/types-background/ground.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.rock{
+    background-image: url('../assets/types-background/rock.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.psychic{
+    background-image: url('../assets/types-background/psychic.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.shadow{
+    background-image: url('../assets/types-background/shadow.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.steel{
+    background-image: url('../assets/types-background/steel.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.flying{
+    background-image: url('../assets/types-background/flying.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.fairy{
+    background-image: url('../assets/types-background/fairy.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
