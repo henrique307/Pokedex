@@ -1,8 +1,96 @@
-.pesquisa-box{
-    margin: 2rem 25%;
-    width: 50%;
-    border-radius: 20px;
+.pesquisa{
+    width: 70%;
+    margin: 2rem 15%;
+}
+
+.pesquisa-field{
+    width: 65%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-style: 1px solid black;
     border-style: none;
-    padding: 5px 5px 5px 10px ;
+    padding: 7px 5px 7px 20px;
     background-color: rgb(0, 255, 170);
 }
+
+.pesquisa-buttom{
+    padding: 7px 5px 7px 10px;
+    border-top-right-radius:20px ;
+    border-bottom-right-radius:20px ;
+    background-color: rgb(0, 255, 170);
+    border-style: none;
+    border-left: 1px solid rgb(44, 143, 110);
+    width: 25%;
+}
+
+/*SWITCH PART*/
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    right: 92%;
+    bottom: -50px;
+    display: inline-block;
+    width: 37px;
+    height: 20px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(21, 88, 66);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgb(17, 83, 61);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .label{
+    position: relative;
+    left: 100%;
+  }
