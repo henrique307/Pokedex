@@ -3,7 +3,7 @@ import './index.css'
 
 export default function PesquisaAvancada({setSelectValue, display}){
     return(
-        <div class={`pesquisaAvancada ${display ? "" : "escondido"}`}>
+        <div className={`pesquisaAvancada ${display ? "" : "escondido"}`}>
             <select onChange={(event) => setSelectValue(event.target.value)}>
             <option value="kanto">Todos</option>
             <option value="kanto">Kanto</option>

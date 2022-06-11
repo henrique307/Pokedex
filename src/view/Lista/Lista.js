@@ -82,9 +82,11 @@ export default function Lista() {
                       className={`pokecard ${pokemon.types[0].type.name} `}
                     >
                       <img src={pokemon.sprites.front_default} />
-                      <h1>{pokemon.name}</h1>
-                      <div>ID: {pokemon.id}</div>
-                      <div>{pokemon.types[0].type.name}</div>
+                      <div className="pokecard-container">
+                          <h1>{pokemon.name}</h1>
+                          <div>ID: {pokemon.id}</div>
+                          <div>{pokemon.types[0].type.name}</div>
+                      </div>
                     </li>
                   </>
                 );

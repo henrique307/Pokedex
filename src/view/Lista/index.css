@@ -14,12 +14,31 @@
   width: 100%;
   height: 200px;
 }
+
+.pokecard-container{
+    background-color: white;
+    margin: 0 18%;
+    width: 200px;
+}
+
 .ward {
   margin: 20px 0 20px 0;
   width: 100%;
   height: 50px;
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: 792px) {
+    .pokelist{
+        grid-template-columns: repeat(3, 33%);
+    }
+}
+
+@media (max-width: 328px) {
+    .pokelist{
+        grid-template-columns: repeat(1, 100%);
+    }
 }
 
 .normal{
