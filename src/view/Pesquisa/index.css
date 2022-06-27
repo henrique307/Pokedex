@@ -17,9 +17,18 @@
   width: fit-content;
   border: none;
   background-color: aliceblue;
-  padding: 10px;
+  padding: 12px;
   border-radius: 20px;
   margin-top:16px;
+}
+
+.pesquisa-avancada-open{
+  display: flex;
+  padding: 10px;
+}
+
+.pesquisa-avancada-closed{
+  display: none;
 }
 
 .pesquisa-avancada-label{
@@ -36,7 +45,12 @@
 }
 
 .pesquisa-avancada-arrow:hover{
+  cursor: pointer;
   opacity: calc(60%);
+}
+
+.pesquisa-avancada-content{
+
 }
 
 .pesquisa-container-field {

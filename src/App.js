@@ -1,5 +1,5 @@
 import React from "react";
-import { Pesquisa, Lista } from "./view/index.js";
+import { Lista } from "./view/index.js";
 import "./index.css";
 
 function App() {

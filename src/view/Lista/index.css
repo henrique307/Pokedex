@@ -7,6 +7,7 @@
   grid-template-columns: repeat(2, 50%);
   gap: 10px;
 }
+
 .pokecard {
   text-align: center;
   list-style: none;
@@ -15,10 +16,8 @@
   height: 200px;
 }
 
-.pokecard-container{
-    background-color: white;
-    margin: 0 18%;
-    width: 200px;
+.pokecard:hover{
+    cursor: pointer;
 }
 
 .ward {
