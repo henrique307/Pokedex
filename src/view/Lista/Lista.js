@@ -2,25 +2,22 @@ import React, { useEffect, useState } from "react";
 import icon from "../assets/loading.svg";
 import Pesquisa from "../Pesquisa/Pesquisa";
 import { scryRenderedDOMComponentsWithTag } from "react-dom/test-utils";
-// import { pegaPokemons } from "../../controller/busca.js";
+// import { fetchPokemons } from "../../controller/busca.js";
 // import pokedex from "pokedex-promise-v2";
 // import getInfo from '../../controller/busca'
 import "./index.css";
+import types from "./handleTypes";
 
 export default function Lista() {
-  const [pokemonsInPage, setPokemonsInPage] = useState();
+
   const [pokemons, setPokemons] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [pesquisa, setPesquisa] = useState();
   const [selectValue, setSelectValue] = useState("Kanto");
 
   useEffect(() => {
-    fetchPokemonsInPage();
+    fetchPokemons();
   }, [pageNumber]);
-
-  useEffect(() => {
-    pegaPokemons();
-  }, [pokemonsInPage]);
 
   useEffect(() => {
     if (pokemons.length) {
@@ -36,33 +33,36 @@ export default function Lista() {
     }
   }, [pokemons]);
 
-  async function fetchPokemonsInPage() {
-    await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=${pageNumber * 30}&limit=${30}`
-    )
-      .then((res) => res.json())
-      .then((newPokemons) => setPokemonsInPage(newPokemons));
-  }
-
-  async function pegaPokemons() {
-    if (pokemonsInPage) {
+  async function fetchPokemons() {
+    // if (pokemonsInPage) {
       const novos = [];
 
-      for (var i = 0; i < 30; i++) {
-        await fetch(pokemonsInPage.results[i].url)
-          .then((res) => res.json())
-          .then((json) => novos.push(json));
+      //await fetch(pokemonsInPage.results[i].url)
+      for (var i = pageNumber * 30; i < (pageNumber * 30) + 30; i++) {
+        if(!i) continue
+
+          await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+            .then((res) => res.json())
+            .then((json) => novos.push(json));
       }
 
       const antigos = pokemons;
 
       setPokemons([...antigos, ...novos]);
       //`https://pokeapi.co/api/v2/pokemon/${pesquisa}`
-    }
+  //}
   }
 
   function mostraDetalhes(event) {
-    console.log(event)
+    console.log(event.target)
+  }
+
+  function checkType(currentType) {
+    for(let type in types){
+      if(type === currentType){
+        return types[type]
+      }
+    }
   }
 
   if (!pokemons.length) {
@@ -70,10 +70,9 @@ export default function Lista() {
   } else {
     return (
       <>
-        <Pesquisa setPesquisa={setPesquisa} pegaPokemons={pegaPokemons}/>
+        <Pesquisa setPesquisa={setPesquisa} fetchPokemons={fetchPokemons}/>
 
         <ul key={"key"} className="pokelist">
-          {/*console.log(pokemon)*/}
           {pokemons
             ? pokemons.map((pokemon, index) => {
                 return (
@@ -85,8 +84,17 @@ export default function Lista() {
                       <img src={pokemon.sprites.front_default} />
                       <div className="pokecard-container">
                           <h1>{pokemon.name}</h1>
-                          <div>ID: {pokemon.id}</div>
-                          <div>{pokemon.types.map(tipo => tipo.type.name + " ")}</div>
+                          <div className="type-cointainer">
+                            {
+                              pokemon.types.map(type => {
+                                return (
+                                  <img className={`types ${type.type.name}-type`} src={checkType(type.type.name)}/>
+                                  )
+                                })
+                            }
+                          </div>
+                            <div>ID: {pokemon.id}</div>
+                          {/* <div className={``}>{pokemon.types.map(tipo => tipo.type.name + " ")}</div> */}
                       </div>
                     </li>
                 );

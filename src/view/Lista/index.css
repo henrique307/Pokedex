@@ -4,8 +4,13 @@
   width: 90%;
   display: grid;
   grid-template-rows: repeat(auto, 500px);
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(4, 25%);
   gap: 10px;
+}
+
+.types{
+    margin: 0 2px;
+    width: 55px;
 }
 
 .pokecard {
@@ -28,13 +33,19 @@
   justify-content: center;
 }
 
-@media (min-width: 792px) {
+@media (max-width: 1150px) {
     .pokelist{
         grid-template-columns: repeat(3, 33%);
     }
 }
 
-@media (max-width: 328px) {
+@media (max-width: 729px) {
+    .pokelist{
+        grid-template-columns: repeat(2, 50%);
+    }
+}
+
+@media (max-width: 400px) {
     .pokelist{
         grid-template-columns: repeat(1, 100%);
     }
