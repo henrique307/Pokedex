@@ -8,7 +8,7 @@ function mostraConteudo() {
 
 }
 
-export default function Pesquisa({ setPesquisa, pegaPokemons }) {
+export default function Pesquisa({ setPesquisa , fetchPokemons }) {
 
   const [avancada, setAvancada] = useState(false)
   const [infoPack, setInfoPack] = useState([])
@@ -27,7 +27,9 @@ export default function Pesquisa({ setPesquisa, pegaPokemons }) {
           <input
             type="button"
             value="Pesquisar!"
-            onClick={pegaPokemons}
+            onClick={() => {
+              fetchPokemons()
+            }}
             className="pesquisa-container-buttom"
           />
         </div>

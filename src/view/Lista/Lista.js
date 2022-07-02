@@ -12,8 +12,9 @@ export default function Lista() {
 
   const [pokemons, setPokemons] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const [pesquisa, setPesquisa] = useState();
+  const [pesquisa, setPesquisa] = useState("");
   const [selectValue, setSelectValue] = useState("Kanto");
+  const [noResults, setNoResults] = useState(false)
 
   useEffect(() => {
     fetchPokemons();
@@ -34,23 +35,23 @@ export default function Lista() {
   }, [pokemons]);
 
   async function fetchPokemons() {
-    // if (pokemonsInPage) {
-      const novos = [];
 
-      //await fetch(pokemonsInPage.results[i].url)
-      for (var i = pageNumber * 30; i < (pageNumber * 30) + 30; i++) {
-        if(!i) continue
+    const novos = [];
 
-          await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-            .then((res) => res.json())
-            .then((json) => novos.push(json));
-      }
+    const expressao = new RegExp(pesquisa,"i")
 
-      const antigos = pokemons;
+    for (var i = pageNumber * 30; i < (pageNumber * 30) + 30; i++) {
+      if(!i) continue
 
-      setPokemons([...antigos, ...novos]);
-      //`https://pokeapi.co/api/v2/pokemon/${pesquisa}`
-  //}
+      await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+        .then((res) => res.json())
+        .then(json => expressao.test(json.name) ? json : null)
+        .then((json) => json ? novos.push(json) : null);
+
+    }
+
+    setPokemons([...pokemons, ...novos]);
+
   }
 
   function mostraDetalhes(event) {
@@ -66,20 +67,20 @@ export default function Lista() {
   }
 
   if (!pokemons.length) {
-    return <div>Carregando...</div>;
+    return <div className="loading-page">Carregando...</div>;
   } else {
     return (
       <>
         <Pesquisa setPesquisa={setPesquisa} fetchPokemons={fetchPokemons}/>
 
-        <ul key={"key"} className="pokelist">
+        <ul className="pokelist">
           {pokemons
             ? pokemons.map((pokemon, index) => {
                 return (
                     <li
-                      key={pokemon.id}
+                      key={index}
                       className={`pokecard ${pokemon.types[0].type.name} `}
-                      onClick={event => mostraDetalhes(event)}
+                      // onClick={event => mostraDetalhes(event)}
                     >
                       <img src={pokemon.sprites.front_default} />
                       <div className="pokecard-container">
@@ -101,7 +102,7 @@ export default function Lista() {
               })
             : null}
         </ul>
-        <div key="justaWard" className="ward">
+        <div key="justaWard" className={`ward`}>
           <img src={icon} />
         </div>
       </>
