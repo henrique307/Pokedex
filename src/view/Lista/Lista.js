@@ -12,9 +12,10 @@ export default function Lista() {
 
   const [pokemons, setPokemons] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const [pesquisa, setPesquisa] = useState("");
+  const [pesquisa, setPesquisa] = useState();
   const [selectValue, setSelectValue] = useState("Kanto");
   const [noResults, setNoResults] = useState(false)
+  const [results, setResults] = useState()
 
   useEffect(() => {
     fetchPokemons();
@@ -36,27 +37,42 @@ export default function Lista() {
 
   async function fetchPokemons() {
 
-    const novos = [];
-
-    const expressao = new RegExp(pesquisa,"i")
+    if(pesquisa){
+      searchPokemons()
+    }
+    
+    let novos = [];
 
     for (var i = pageNumber * 30; i < (pageNumber * 30) + 30; i++) {
+
       if(!i) continue
 
-      await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+      await fetch(results ? console.log(results[i]) : `https://pokeapi.co/api/v2/pokemon/${i}`)
+      // (results[i].url ? results[i].url : null)
         .then((res) => res.json())
-        .then(json => expressao.test(json.name) ? json : null)
-        .then((json) => json ? novos.push(json) : null);
+        .then((json) => json ? novos.push(json) : null)
 
     }
 
-    setPokemons([...pokemons, ...novos]);
-
+    if(pesquisa && pageNumber === 0){
+      setPokemons(novos);
+    }else{
+      setPokemons([...pokemons, ...novos]);
+    }
   }
 
-  function mostraDetalhes(event) {
-    console.log(event.target)
+  async function searchPokemons() {
+
+    const expressao = new RegExp(pesquisa,"i")
+    
+    await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
+      .then(res => res.json())
+      .then(json => setResults(json.results.filter(poke => expressao.test(poke.name))))
   }
+
+  // function mostraDetalhes(event) {
+  //   console.log(event.target)
+  // }
 
   function checkType(currentType) {
     for(let type in types){

@@ -23,6 +23,7 @@ export default function Pesquisa({ setPesquisa , fetchPokemons }) {
             placeholder="Pesquise aqui por nome!"
             className="pesquisa-container-field"
             onChange={(event) => setPesquisa(event.target.value)}
+            onKeyDown={event => event.keyCode === 13 ? fetchPokemons() : null}
           />
           <input
             type="button"
