@@ -6,7 +6,7 @@
   margin: 25px 15% 16px 15%; /*CIMA ESQUERDA BAIXO DIREITA*/
 }
 
-.pesquisa-container{
+.pesquisa-container {
   width: 100%;
 }
 
@@ -18,24 +18,24 @@
   background-color: aliceblue;
   padding: 12px;
   border-radius: 20px;
-  margin-top:16px;
+  margin-top: 16px;
   /* transition: ease-in-out, width 10s ease-in-out; */
 }
 
-.pesquisa-avancada-open{
+.pesquisa-avancada-open {
   display: flex;
   padding: 10px;
 }
 
-.pesquisa-avancada-closed{
+.pesquisa-avancada-closed {
   display: none;
 }
 
-.pesquisa-avancada-label{
+.pesquisa-avancada-label {
   margin-bottom: 2px;
 }
 
-.pesquisa-avancada-arrow{
+.pesquisa-avancada-arrow {
   padding: 0;
   margin: 0;
   /* opacity: calc(0%); */
@@ -44,13 +44,12 @@
   width: 10px;
 }
 
-.pesquisa-avancada-arrow:hover{
+.pesquisa-avancada-arrow:hover {
   cursor: pointer;
   opacity: calc(60%);
 }
 
-.pesquisa-avancada-content{
-
+.pesquisa-avancada-content {
 }
 
 .pesquisa-container-field {

@@ -9,13 +9,12 @@ import "./index.css";
 import types from "./handleTypes";
 
 export default function Lista() {
-
   const [pokemons, setPokemons] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [pesquisa, setPesquisa] = useState();
   const [selectValue, setSelectValue] = useState("Kanto");
-  const [noResults, setNoResults] = useState(false)
-  const [results, setResults] = useState()
+  const [noResults, setNoResults] = useState(false);
+  const [results, setResults] = useState();
 
   useEffect(() => {
     fetchPokemons();
@@ -36,38 +35,40 @@ export default function Lista() {
   }, [pokemons]);
 
   async function fetchPokemons() {
-
-    if(pesquisa){
-      searchPokemons()
+    if (pesquisa) {
+      searchPokemons();
     }
-    
+
     let novos = [];
 
-    for (var i = pageNumber * 30; i < (pageNumber * 30) + 30; i++) {
+    for (var i = pageNumber * 30; i < pageNumber * 30 + 30; i++) {
+      if (!i) continue;
 
-      if(!i) continue
-
-      await fetch(results ? console.log(results[i]) : `https://pokeapi.co/api/v2/pokemon/${i}`)
-      // (results[i].url ? results[i].url : null)
+      await fetch(
+        results
+          ? console.log(results[i])
+          : `https://pokeapi.co/api/v2/pokemon/${i}`
+      )
+        // (results[i].url ? results[i].url : null)
         .then((res) => res.json())
-        .then((json) => json ? novos.push(json) : null)
-
+        .then((json) => (json ? novos.push(json) : null));
     }
 
-    if(pesquisa && pageNumber === 0){
+    if (pesquisa && pageNumber === 0) {
       setPokemons(novos);
-    }else{
+    } else {
       setPokemons([...pokemons, ...novos]);
     }
   }
 
   async function searchPokemons() {
+    const expressao = new RegExp(pesquisa, "i");
 
-    const expressao = new RegExp(pesquisa,"i")
-    
     await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
-      .then(res => res.json())
-      .then(json => setResults(json.results.filter(poke => expressao.test(poke.name))))
+      .then((res) => res.json())
+      .then((json) =>
+        setResults(json.results.filter((poke) => expressao.test(poke.name)))
+      );
   }
 
   // function mostraDetalhes(event) {
@@ -75,9 +76,9 @@ export default function Lista() {
   // }
 
   function checkType(currentType) {
-    for(let type in types){
-      if(type === currentType){
-        return types[type]
+    for (let type in types) {
+      if (type === currentType) {
+        return types[type];
       }
     }
   }
@@ -87,33 +88,34 @@ export default function Lista() {
   } else {
     return (
       <>
-        <Pesquisa setPesquisa={setPesquisa} fetchPokemons={fetchPokemons}/>
+        <Pesquisa setPesquisa={setPesquisa} fetchPokemons={fetchPokemons} />
 
         <ul className="pokelist">
           {pokemons
             ? pokemons.map((pokemon, index) => {
                 return (
-                    <li
-                      key={index}
-                      className={`pokecard ${pokemon.types[0].type.name} `}
-                      // onClick={event => mostraDetalhes(event)}
-                    >
-                      <img src={pokemon.sprites.front_default} />
-                      <div className="pokecard-container">
-                          <h1>{pokemon.name}</h1>
-                          <div className="type-cointainer">
-                            {
-                              pokemon.types.map(type => {
-                                return (
-                                  <img className={`types ${type.type.name}-type`} src={checkType(type.type.name)}/>
-                                  )
-                                })
-                            }
-                          </div>
-                            <div>ID: {pokemon.id}</div>
-                          {/* <div className={``}>{pokemon.types.map(tipo => tipo.type.name + " ")}</div> */}
+                  <li
+                    key={index}
+                    className={`pokecard ${pokemon.types[0].type.name} `}
+                    // onClick={event => mostraDetalhes(event)}
+                  >
+                    <img src={pokemon.sprites.front_default} />
+                    <div className="pokecard-container">
+                      <h1>{pokemon.name}</h1>
+                      <div className="type-cointainer">
+                        {pokemon.types.map((type) => {
+                          return (
+                            <img
+                              className={`types ${type.type.name}-type`}
+                              src={checkType(type.type.name)}
+                            />
+                          );
+                        })}
                       </div>
-                    </li>
+                      <div>ID: {pokemon.id}</div>
+                      {/* <div className={``}>{pokemon.types.map(tipo => tipo.type.name + " ")}</div> */}
+                    </div>
+                  </li>
                 );
               })
             : null}
